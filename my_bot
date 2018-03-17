@@ -4,7 +4,6 @@ Type "copyright", "credits" or "license()" for more information.
 >>> import requests
 >>> 
 >>> url = "https://api.telegram.org/bot539298818:AAFFnNI_V9XYwq6pie5Hj_GazxnVSIO4Cm0/"
->>> 
 >>> def get_updates_json(request):
 	response = requests.get(request + 'getUpdates')
 	return response.json()
@@ -19,10 +18,11 @@ Type "copyright", "credits" or "license()" for more information.
 	return chat_id
 
 >>> def send_mess(chat, text):
-	params = {'chat_id': chat, 'text': text}
-	response = requests.post(url + 'sendMessage', data=params)
-	return response
+	 params = {'chat_id': chat, 'text': text}
+	 response = requests.post(url + 'sendMessage', data=params)
+	 return response
 
+	
 >>> chat_id = get_chat_id(last_update(get_updates_json(url)))
 >>> send_mess(chat_id, 'Welcome')
 <Response [200]>
@@ -30,29 +30,8 @@ Type "copyright", "credits" or "license()" for more information.
 	update_id = last_update(get_updates_json(url))['update_id']
 	while True:
 		if update_id == last_update(get_updates_json(url))['update_id']:
-		send_mess(get_chat_id(last_update(get_updates_json(url))), 'Hello')
-		
-SyntaxError: expected an indented block
->>> def main():
-	update_id = last_update(get_updates_json(url))['update_id']
-	while True:
-		if update_id == last_update(get_updates_json(url))['update_id']:
-		send_mess(get_chat_id(last_update(get_updates_json(url))), 'Hello')
-		
-SyntaxError: expected an indented block
->>> def main():
-	update_id = last_update(get_updates_json(url))['update_id']
-	while True:
-	if update_id == last_update(get_updates_json(url))['update_id']:
-		
-SyntaxError: expected an indented block
->>> def main():
-	update_id = last_update(get_updates_json(url))['update_id']
-	while True:
-		if update_id == last_update(get_updates_json(url))['update_id']:
-			send_mess(get_chat_id(last_update(get_updates_json(url))), 'Hello')
+			send_mess(get_chat_id(last_update(get_updates_json(url))), 'Do you want to talk? Start a conversation with yourself.')
 			update_id += 1
-			sleep(1)
 
 			
 >>> if __name__ == '__main__':
@@ -60,36 +39,35 @@ SyntaxError: expected an indented block
 
 	
 Traceback (most recent call last):
-  File "<pyshell#48>", line 2, in <module>
+  File "<pyshell#32>", line 2, in <module>
     main()
-  File "<pyshell#45>", line 7, in main
-    sleep(1)
-NameError: name 'sleep' is not defined
->>> def main():
-	update_id = last_update(get_updates_json(url))['update_id']
-	while True:
-		if update_id == last_update(get_updates_json(url))['update_id']:
-		   send_mess(get_chat_id(last_update(get_updates_json(url))), 'Hello')
-		   update_id += 1
-		sleep(1)
-
-		
->>> if __name__ == '__main__':
-	main()
-
-	
-Traceback (most recent call last):
-  File "<pyshell#59>", line 2, in <module>
-    main()
-  File "<pyshell#56>", line 7, in main
-    sleep(1)
-NameError: name 'sleep' is not defined
->>> def get_updates_json(request):
-	params = {'timeout': 100, 'offset': None}
-	response = requests.get(request + 'getUpdates', data=params)
-	 return response.json()
-	
-SyntaxError: unexpected indent
+  File "<pyshell#29>", line 4, in main
+    if update_id == last_update(get_updates_json(url))['update_id']:
+  File "<pyshell#6>", line 2, in get_updates_json
+    response = requests.get(request + 'getUpdates')
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 440, in send
+    timeout=timeout
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 852, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+KeyboardInterrupt
 >>> def get_updates_json(request):
 	params = {'timeout': 100, 'offset': None}
 	response = requests.get(request + 'getUpdates', data=params)
@@ -99,10 +77,10 @@ SyntaxError: unexpected indent
 >>> import datetime
 >>> class BotHandler:
 	def __init__(self, token):
-		self.token = token
-		self.api_url = "https://api.telegram.org/bot{}/".format(token)
+	    self.token = token
+	    self.api_url = "https://api.telegram.org/bot{}/".format(token)
 
-		
+	    
 >>> def get_updates(self, offset=None, timeout=30):
 	method = 'getUpdates'
 	params = {'timeout': timeout, 'offset': offset}
@@ -118,54 +96,15 @@ SyntaxError: unexpected indent
 
 >>> def get_last_update(self):
 	get_result = self.get_updates()
-
-	
->>>  if len(get_result) > 0:
-	
-SyntaxError: unexpected indent
->>> if len(get_result) > 0:
-	last_update = get_result[-1]
-
-	
-Traceback (most recent call last):
-  File "<pyshell#95>", line 1, in <module>
-    if len(get_result) > 0:
-NameError: name 'get_result' is not defined
->>> if len(get_result) > 0:
-	last_update = get_result[-1]
-else:
-	last_update = get_result[len(get_result)]
-return last_update
-SyntaxError: invalid syntax
->>> if len(get_result) > 0:
-            last_update = get_result[-1]
-        else:
-            last_update = get_result[len(get_result)]
-
-        return last_update
-SyntaxError: unindent does not match any outer indentation level
->>> if len(get_result) > 0:
-	last_update = get_result[-1]
-else:
-	last_update = get_result[len(get_result)]
+	if len(get_result) > 0:
+		last_update = get_result[-1]
+	else:
+		last_update = get_result[len(get_result)]
 	return last_update
-SyntaxError: 'return' outside function
->>> if len(get_result) > 0:
-	last_update = get_result[-1]
-else:
-	last_update = get_result[len(get_result)]
-    return last_update
-SyntaxError: unindent does not match any outer indentation level
->>> if len(get_result) > 0:
-	last_update = get_result[-1]
-else:
-	last_update = get_result[len(get_result)]
-	    return last_update
-	
-SyntaxError: unexpected indent
+
 >>> greet_bot = BotHandler(token)
 Traceback (most recent call last):
-  File "<pyshell#120>", line 1, in <module>
+  File "<pyshell#67>", line 1, in <module>
     greet_bot = BotHandler(token)
 NameError: name 'token' is not defined
 >>> 
