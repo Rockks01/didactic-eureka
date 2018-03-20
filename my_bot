@@ -1,110 +1,106 @@
-Python 3.6.4 (default, Jan  5 2018, 02:13:53) 
-[GCC 7.2.0] on linux
-Type "copyright", "credits" or "license()" for more information.
->>> import requests
->>> 
->>> url = "https://api.telegram.org/bot539298818:AAFFnNI_V9XYwq6pie5Hj_GazxnVSIO4Cm0/"
->>> def get_updates_json(request):
-	response = requests.get(request + 'getUpdates')
-	return response.json()
+import requests
 
->>> def last_update(data):
-	results = data['result']
-	total_updates = len(results) - 1
-	return results[total_updates]
+url = "https://api.telegram.org/bot539298818:AAFFnNI_V9XYwq6pie5Hj_GazxnVSIO4Cm0/"
 
->>> def get_chat_id(update):
-	chat_id = update['message']['chat']['id']
-	return chat_id
-
->>> def send_mess(chat, text):
-	 params = {'chat_id': chat, 'text': text}
-	 response = requests.post(url + 'sendMessage', data=params)
-	 return response
-
-	
->>> chat_id = get_chat_id(last_update(get_updates_json(url)))
->>> send_mess(chat_id, 'Welcome')
-<Response [200]>
->>> def main():
-	update_id = last_update(get_updates_json(url))['update_id']
-	while True:
-		if update_id == last_update(get_updates_json(url))['update_id']:
-			send_mess(get_chat_id(last_update(get_updates_json(url))), 'Do you want to talk? Start a conversation with yourself.')
-			update_id += 1
-
-			
->>> if __name__ == '__main__':
-	main()
-
-	
-Traceback (most recent call last):
-  File "<pyshell#32>", line 2, in <module>
-    main()
-  File "<pyshell#29>", line 4, in main
-    if update_id == last_update(get_updates_json(url))['update_id']:
-  File "<pyshell#6>", line 2, in get_updates_json
+def get_updates_json(request):
     response = requests.get(request + 'getUpdates')
-  File "/usr/lib/python3/dist-packages/requests/api.py", line 72, in get
-    return request('get', url, params=params, **kwargs)
-  File "/usr/lib/python3/dist-packages/requests/api.py", line 58, in request
-    return session.request(method=method, url=url, **kwargs)
-  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 508, in request
-    resp = self.send(prep, **send_kwargs)
-  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 618, in send
-    r = adapter.send(request, **kwargs)
-  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 440, in send
-    timeout=timeout
-  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 601, in urlopen
-    chunked=chunked)
-  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 346, in _make_request
-    self._validate_conn(conn)
-  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 852, in _validate_conn
-    conn.connect()
-  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 284, in connect
-    conn = self._new_conn()
-  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 141, in _new_conn
-    (self.host, self.port), self.timeout, **extra_kw)
-  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 73, in create_connection
-    sock.connect(sa)
-KeyboardInterrupt
->>> def get_updates_json(request):
-	params = {'timeout': 100, 'offset': None}
-	response = requests.get(request + 'getUpdates', data=params)
-	return response.json()
+    return response.json()
+def last_update(data):
+    results = data['result']
+    total_updates = len(results) - 1
+    return results[total_updates]
+def get_chat_id(update):
+    chat_id = update['message'] ['chat'] ['id']
+    return chat_id
+def send_mess(chat, text):
+    params = {'chat_id': chat, 'text': text}
+    response = requests.post(url + 'sendMessage', data=params)
+    return response
+chat_id = get_chat_id(last_update_json(url)))
 
->>> import requests
->>> import datetime
->>> class BotHandler:
-	def __init__(self, token):
-	    self.token = token
-	    self.api_url = "https://api.telegram.org/bot{}/".format(token)
+send_mess(chat_id, 'Hello')
 
-	    
->>> def get_updates(self, offset=None, timeout=30):
-	method = 'getUpdates'
-	params = {'timeout': timeout, 'offset': offset}
-	resp = requests.get(self.api_url + method, params)
-	result_json = resp.json()['result']
-	return result_json
+def main():
+    update_id = last_update(get_updates_json(url))) ['update_id']
+    while True:
+        if update_id == last_update(get_updates_json(url))['update_id']
+        send_mess(get_chat_id(last_update(get_updates_json(url))), 'test')
+    sleep(1)
 
->>> def send_message(self, chat_id, text):
-	params = {'chat_id': chat_id, 'text': text}
-	method = 'sendMessage'
-	resp = requests.post(self.api_url + method, params)
-	return resp
+if __name__ == '__main__':
+    main()
 
->>> def get_last_update(self):
-	get_result = self.get_updates()
-	if len(get_result) > 0:
-		last_update = get_result[-1]
-	else:
-		last_update = get_result[len(get_result)]
-	return last_update
+def get_updates_json(request):
+    params = {'timeout': 100, 'offset': None}
+    response = requests.get(request + 'getUpdates', data=params)
+    return response.json()
 
->>> greet_bot = BotHandler(token)
-Traceback (most recent call last):
-  File "<pyshell#67>", line 1, in <module>
-    greet_bot = BotHandler(token)
-NameError: name 'token' is not defined
->>> 
+import requests
+import datetime
+
+class BotHandler:
+
+    def __init__(self, token):
+        self.token = token
+        self.token = token
+        self.api.url = "https://api/telegram.org/bot{}".format(token)
+
+    def get_updates(self, offset=None, timout=30):
+        method = 'getUpdates'
+        params = {'timeout': timeout, 'offset': offset}
+        resp = requests.get(self.api_url + method, params)
+        result_json = resp.json()['result']
+        self.token = token
+        self.api_url = 'https://api.telegram.org/bot{}/.format(token)
+
+    def send_message(self, chat_id, text):
+        params = {chat_id: chat_id, 'text': text}
+        method = 'sendMessage'
+        resp = requests.post(self.api_url + method, params)
+        return resp
+
+    def get_last_update(self):
+        get_result = self.get_updates()
+
+        if len(get_result) > 0:
+            last_update = get_result[-1]
+    else:
+        last_update = get_result[len(get_result)]
+
+    return last_update
+
+import requests
+import datetime
+
+greet_bot = BotHandler(token)
+greetings = ('hello','hi', 'greetings', 'sup')
+now = datetime.datetime.now ()
+
+def main():
+    new_offset = None
+    today = now.day
+    hour = now.hour
+
+    while True:
+        greet_bot.get_updates(new_offset)
+
+        last_update = greet_bot.get_last_update()
+
+        last_update_id = last_update['update_id']
+        last_chat_text = last_update['message'] ['text']
+        last_chat_id = last_update['message'] ['chat'] ['id']
+        last_chat_name = last_update['message'] ['chat'] ['first_name']
+
+        if last_chat_text.lower() in greetings and today == now.day and 6 <= hour < 12:
+            greet_bot.send_message(last_chat_id, 'Good Morning' {}'.format(last_chat_name))
+                                   today +=1
+        elif last_chat_text.lower() in greetings and today == now.day and 12 <= 17:
+                greet_bot.send_message(last_chat_id, 'Good Afternoon' {}'.format(last_chat_name))
+
+        new_offset = last_update_id + 1
+        if __name__ == '__main__':
+            try:
+                main()
+            except KeyboardInterrupt:
+                exit()
+                                       
