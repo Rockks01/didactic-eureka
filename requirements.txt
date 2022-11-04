@@ -64,7 +64,7 @@ service-identity==16.0.0
 setproctitle==1.1.8
 six==1.10.0
 tails-installer==3.11.8
-Twisted==16.0.0
+Twisted==22.10.0
 urlgrabber==3.9.1
 urllib3==1.22
 uTidylib==0.2
